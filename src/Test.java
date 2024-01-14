@@ -14,9 +14,10 @@ import graph.Vertex;
 public class Test {
 
     public static void main(String[] args) throws IOException {
-        // read all file names of substrate and virtual topologies
+
+       
         List<String> substrateFile = readAllFiles.substrateFileName();
-        Scanner input = new Scanner(System.in); // Create Scanner() object
+        Scanner input = new Scanner(System.in); 
 
         for (int i = 0; i < substrateFile.size(); i++) { // run substrate
             // get all substrate vertices
