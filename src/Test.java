@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import algorithm.ShortestPath;
+import algorithm.BellmanFord;
 import algorithm.FloydWarshall;
 import file.readAllFiles;
 import graph.Edge;
@@ -55,6 +56,12 @@ public class Test {
             // Run Floyd-Warshall algorithm and show its output
             runFloydWarshall(substrate, sourceNode, destinationNode, 5);
             System.out.println("=============================================");
+
+            // runBellmanFord(substrate, sourceNode, destinationNode, 5);
+            // System.out.println("=============================================");
+
+        
+            
         } // end-for substrate files
 
         input.close(); // close Scanner object
@@ -93,4 +100,38 @@ public class Test {
         System.out.println(Arrays.toString(path.toArray()));
         System.out.println("=============================================");
     }
+
+   /*
+
+    public static void runBellmanFord(List<Vertex> substrate, int sourceNode, int destinationNode, int bandwidth) {
+        BellmanFord bellmanFord = new BellmanFord(substrate);
+        List<Vertex> bellmanFordPath = bellmanFord.findShortestPath(sourceNode, destinationNode, bandwidth);
+
+        System.out.println("Bellman-Ford Algorithm - Paths:");
+        for (Vertex vertex : substrate) {
+            System.out.println("Node[" + vertex + "]: Cpu[" + vertex.getCPU() + "]");
+            if (vertex.adjacencies != null) {
+                for (Edge connectedEdge : vertex.adjacencies) {
+                    System.out.println("Edge:[" + connectedEdge.getStartVertex() + "]--[" + connectedEdge.getTargetVertex()
+                            + "]: BW[" + connectedEdge.getBandwidth() + "], Cost[" + connectedEdge.getEdgeWeight() + "]");
+                }
+            }
+            System.out.println("---------------------------------------------");
+        }
+
+        if (!bellmanFordPath.isEmpty()) {
+            System.out.println("Bellman-Ford Shortest Path:");
+            for (Vertex vertex : bellmanFordPath) {
+                System.out.print("Node[" + vertex + "] -> ");
+            }
+            System.out.println("\nTotal Distance: " + bellmanFordPath.get(bellmanFordPath.size() - 1).getMinDistance());
+        } else {
+            System.out.println("No path found from Node " + sourceNode + " to Node " + destinationNode);
+        }
+
+        System.out.println("=============================================");
+    }
+
+    */
 }
+
