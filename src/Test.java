@@ -15,9 +15,8 @@ public class Test {
 
     public static void main(String[] args) throws IOException {
 
-       
         List<String> substrateFile = readAllFiles.substrateFileName();
-        Scanner input = new Scanner(System.in); 
+        Scanner input = new Scanner(System.in);
 
         for (int i = 0; i < substrateFile.size(); i++) { // run substrate
             // get all substrate vertices
@@ -54,7 +53,7 @@ public class Test {
             System.out.println("=============================================");
 
             // Run Floyd-Warshall algorithm and show its output
-            runFloydWarshall(substrate, sourceNode, destinationNode);
+            runFloydWarshall(substrate);
             System.out.println("=============================================");
         } // end-for substrate files
 
@@ -74,22 +73,17 @@ public class Test {
         System.out.println("");
     }
 
-    public static void runFloydWarshall(List<Vertex> substrate, int sourceNode, int destinationNode) {
+    public static void runFloydWarshall(List<Vertex> substrate) {
         FloydWarshall floydWarshall = new FloydWarshall();
-        List<Vertex> path = floydWarshall.findShortestPath(substrate, sourceNode, destinationNode, 5);
-
-        // Show Floyd-Warshall algorithm output
-        System.out.println("Floyd-Warshall Algorithm - Paths:");
-        for (Vertex vertex : substrate) {
-            System.out.println("Node[" + vertex + "]: Cpu[" + vertex.getCPU() + "]");
-            for (Edge connectedEdge : vertex.adjacencies) {
-                System.out.println("Edge:[" + connectedEdge.getStartVertex() + "]--[" + connectedEdge.getTargetVertex()
-                        + "]: BW[" + connectedEdge.getBandwidth() + "], Cost[" + connectedEdge.getEdgeWeight() + "]");
+        // Assuming you want to find the shortest path for all pairs of nodes
+        int numNodes = substrate.size();
+        for (int sourceNode = 0; sourceNode < numNodes; sourceNode++) {
+            for (int destinationNode = 0; destinationNode < numNodes; destinationNode++) {
+                List<Vertex> path = floydWarshall.findShortestPath(substrate, sourceNode, destinationNode, 5);
+                System.out.println("Floyd-Warshall Algorithm - Shortest Path from Node " + sourceNode + " to Node " + destinationNode + ":");
+                System.out.println(Arrays.toString(path.toArray()));
+                System.out.println("=============================================");
             }
-            System.out.println("---------------------------------------------");
         }
-
-        System.out.println(Arrays.toString(path.toArray()));
-        System.out.println("=============================================");
     }
 }

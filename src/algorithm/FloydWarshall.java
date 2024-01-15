@@ -9,15 +9,15 @@ import java.util.List;
 
 public class FloydWarshall extends ShortestPath {
 
-    //  Distances between vertices
+    // Distances between vertices
     private int[][] distanceMatrix;
 
     // Intermediate vertices in the shortest path
     private int[][] intermediateVertices;
 
     public FloydWarshall() {
-        this.distanceMatrix = null;       
-        this.intermediateVertices = null;   
+        this.distanceMatrix = null;
+        this.intermediateVertices = null;
     }
 
     public int[][] getIntermediateVertices() {
@@ -26,8 +26,8 @@ public class FloydWarshall extends ShortestPath {
 
     // Find the shortest path between sourceID and destinationID for edges with bandwidth
     public List<Vertex> findShortestPath(List<Vertex> vertices, int sourceID, int destinationID, int bandwidth) {
-        initializeDistanceMatrix(vertices, bandwidth); 
-        performFloydWarshall(vertices.size());        
+        initializeDistanceMatrix(vertices, bandwidth);
+        performFloydWarshall(vertices.size());
 
         List<Vertex> path = new ArrayList<>();
         int sourceIndex = getIndex(vertices, sourceID);
@@ -38,7 +38,7 @@ public class FloydWarshall extends ShortestPath {
             reconstructPath(sourceIndex, destinationIndex, path, vertices);
         }
 
-        return path;  // Return the shortest path
+        return path; // Return the shortest path
     }
 
     // Initialize distanceMatrix and intermediateVertices based on the edges with sufficient bandwidth
@@ -102,7 +102,7 @@ public class FloydWarshall extends ShortestPath {
     // get the index of a vertex in the list based on its ID
     private int getIndex(List<Vertex> vertices, int vertexID) {
         for (int i = 0; i < vertices.size(); i++) {
-            if (vertices.get(i).name == vertexID) { 
+            if (vertices.get(i).name == vertexID) {
                 return i;
             }
         }
